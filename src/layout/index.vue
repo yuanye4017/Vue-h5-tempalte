@@ -2,8 +2,8 @@
   <div class="app-wrapper">
     <van-sticky>
       <van-tabs v-model="active" @click="goPage">
-        <van-tab title="首页" />
-        <van-tab title="图标" />
+        <van-tab title="首页" name="/home" />
+        <van-tab title="图标" name="/icon" />
       </van-tabs>
     </van-sticky>
     <keep-alive :include="cachedViews">
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      active: null
+      active: 'home'
     }
   },
   computed: {
@@ -35,19 +35,23 @@ export default {
       return this.$route.path
     }
   },
+  watch: {
+    $route: {
+      handler: function(route) {
+        if (route.fullPath.indexOf(this.active) <= -1) {
+          this.active = route.path
+        }
+      },
+      immediate: true
+    }
+  },
   created() {
     this.active = this.$store.getters.active
   },
   methods: {
     goPage() {
       this.$store.dispatch('app/changeActive', this.active)
-      var path = null
-      switch (this.active) {
-        case 0 : path = '/home'; break
-        case 1 : path = '/icon'; break
-        default: path = '/'; break
-      }
-      this.$router.push(path)
+      this.$router.push(this.active)
     }
   }
 }

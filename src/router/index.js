@@ -66,6 +66,12 @@ export const constantRoutes = [ // 这是路由的集合 注意Layout的出现
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+// 解决重复跳转路由报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }), // 当切换到新路由时，想要页面滚到顶部
