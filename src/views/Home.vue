@@ -19,5 +19,6 @@ export default {
 <style scoped lang="scss">
 .home {
   font-size: 12px;
+  color: $blue;
 }
 </style>
