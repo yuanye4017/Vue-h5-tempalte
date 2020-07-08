@@ -1,23 +1,51 @@
 <template>
-  <div>
-    <van-button type="default" @click="login">登陆</van-button>
+  <div class="login">
+    <div class="login__form">
+      <van-form @submit="onSubmit">
+        <van-field
+          v-model="loginForm.username"
+          name="用户名"
+          label="用户名"
+          placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]"
+        />
+        <van-field
+          v-model="loginForm.password"
+          type="password"
+          name="密码"
+          label="密码"
+          placeholder="密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+        />
+        <div style="margin: 16px;">
+          <van-button round block type="info" native-type="submit">
+            <span v-if="isShow">提交</span>
+            <van-loading v-else />
+          </van-button>
+        </div>
+      </van-form>
+    </div>
   </div>
 </template>
 
 <script>
-import { Button } from 'vant'
+import { Button, Form, Field, Loading } from 'vant'
 export default {
   name: 'Login',
   components: {
-    [Button.name]: Button
+    [Button.name]: Button,
+    [Form.name]: Form,
+    [Field.name]: Field,
+    [Loading.name]: Loading
   },
   data() {
     return {
       redirect: undefined,
       otherQuery: {},
+      isShow: true,
       loginForm: {
-        username: '12',
-        password: '12'
+        username: 'admin',
+        password: 'admin'
       }
     }
   },
@@ -33,13 +61,15 @@ export default {
       immediate: true
     }
   },
-  created() {},
-  mounted() {},
   methods: {
-    login() {
-      this.$store.dispatch('user/login', this.loginForm).then(() => {
-        this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-      })
+    onSubmit(values) {
+      this.isShow = false
+      this.$store
+        .dispatch('user/login', this.loginForm)
+        .then(() => {
+          this.isShow = true
+          this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+        })
     },
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
@@ -54,5 +84,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.login {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/login/login.jpeg');
+  &__form {
+    width: 80%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+}
 </style>
