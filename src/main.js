@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
+
+import router from './router'
+import store from './store'
+
 import './registerServiceWorker'
 // 重置css样式
 import 'normalize.css/normalize.css'
@@ -12,9 +16,8 @@ import fastClick from 'fastclick'
 fastClick.attach(document.body)
 // 全局svg-icon
 import './icons'
-
-import router from './router'
-import store from './store'
+// 路由拦截
+import '@/permission'
 
 Vue.config.productionTip = false
 

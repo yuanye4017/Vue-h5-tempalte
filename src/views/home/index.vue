@@ -1,33 +1,25 @@
 <template>
   <div class="home">
     <div class="home__title">
-      <van-checkbox-group v-model="list">
-        <van-cell-group>
-          <van-cell v-for="item in list" :key="item" :title="item">
-            <template #right-icon>
-              <van-checkbox ref="checkboxes" :name="item" />
-            </template>
-          </van-cell>
-        </van-cell-group>
-      </van-checkbox-group>
+      <van-cell-group>
+        <van-cell v-for="item in list" :key="item" :title="item" icon="success" />
+      </van-cell-group>
     </div>
     <div class="home__logout">
-      <van-button type="warning">退出按钮</van-button>
+      <van-button type="warning" @click="logout">退出按钮</van-button>
     </div>
   </div>
 </template>
 
 <script>
-import { Cell, CellGroup, Button, Icon, Checkbox, CheckboxGroup } from 'vant'
+import { Cell, CellGroup, Button, Icon } from 'vant'
 export default {
   name: 'Home',
   components: {
     [Cell.name]: Cell,
     [CellGroup.name]: CellGroup,
     [Button.name]: Button,
-    [Icon.name]: Icon,
-    [Checkbox.name]: Checkbox,
-    [CheckboxGroup.name]: CheckboxGroup
+    [Icon.name]: Icon
   },
   data() {
     return {
@@ -46,10 +38,6 @@ export default {
 .home__title {
   .van-cell__title {
     text-align: left;
-  }
-  .van-cell__value .van-checkbox{
-    display: flex;
-    justify-content: flex-end;
   }
 }
 </style>
