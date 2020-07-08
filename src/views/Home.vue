@@ -2,6 +2,7 @@
   <div class="home">
     首页
     <van-button type="primary">主要按钮</van-button>
+    <svg-icon icon-class="email" />
   </div>
 </template>
 

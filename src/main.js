@@ -10,6 +10,8 @@ import 'amfe-flexible/index.js'
 // 解决click事件300ms延迟
 import fastClick from 'fastclick'
 fastClick.attach(document.body)
+// 全局svg-icon
+import './icons'
 
 import router from './router'
 import store from './store'
