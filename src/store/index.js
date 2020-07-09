@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-import createPersistedState from 'vuex-persistedstate'
 
 /**
  * 获取modules下所有的模块
@@ -27,10 +26,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 
 const store = new Vuex.Store({
   modules,
-  getters,
-  plugins: [createPersistedState({
-    app: window.sessionStorage
-  })]
+  getters
 })
 
 export default store

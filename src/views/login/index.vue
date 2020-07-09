@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { Button, Form, Field, Loading } from 'vant'
+import { Button, Form, Field, Loading, Toast } from 'vant'
 export default {
   name: 'Login',
   components: {
@@ -69,6 +69,11 @@ export default {
         .then(() => {
           this.isShow = true
           this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+        })
+        .catch((error) => {
+          this.isShow = true
+          Toast.fail('登陆失败，请稍后在试')
+          console.log(error)
         })
     },
     getOtherQuery(query) {
