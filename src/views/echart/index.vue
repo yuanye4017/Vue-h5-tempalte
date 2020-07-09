@@ -4,16 +4,17 @@
       <bar-echart height="100%" width="100%" />
     </div>
     <div class="chart-container__item">
-      <bar-echart id="bar" height="100%" width="100%" />
+      <line-echart id="bar" height="100%" width="100%" />
     </div>
   </div>
 </template>
 
 <script>
 import BarEchart from '@/components/Echart/BarEchart'
+import LineEchart from '@/components/Echart/LineEchart'
 export default {
   name: 'Echart',
-  components: { BarEchart },
+  components: { BarEchart, LineEchart },
   data() {
     return {}
   },

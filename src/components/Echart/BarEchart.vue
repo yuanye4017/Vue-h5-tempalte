@@ -51,7 +51,7 @@ export default {
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         title: {
           text: 'statistics',
           x: '20',
