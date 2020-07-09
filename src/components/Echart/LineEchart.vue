@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// 引入 ECharts 主模块
 import echarts from 'echarts'
 
 export default {
