@@ -7,10 +7,13 @@
 import echarts from 'echarts/lib/echarts'
 // 引入柱状图
 require('echarts/lib/chart/bar')
+require('echarts/lib/chart/line')
+require('echarts/lib/chart/pie')
 // 引入提示框和标题组件
 require('echarts/lib/component/tooltip')
 require('echarts/lib/component/title')
-
+require('echarts/lib/component/legend')
+require('echarts/lib/component/grid')
 export default {
   name: 'BarEchart',
   props: {
@@ -51,13 +54,13 @@ export default {
     initChart() {
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
-        backgroundColor: '#eee',
-        title: {
+        backgroundColor: '#fff',
+        title: { // 标题
           text: 'statistics',
           x: '20',
-          top: '20',
+          top: '0',
           textStyle: {
-            color: '#fff',
+            color: '#eee',
             fontSize: '22'
           },
           subtextStyle: {
@@ -72,6 +75,28 @@ export default {
               color: '#fff'
             }
           }
+        },
+        legend: {
+          top: 0,
+          icon: 'rect',
+          itemWidth: 14,
+          itemHeight: 5,
+          itemGap: 13,
+          data: ['pie', 'bar', 'line'],
+          right: '4%',
+          textStyle: {
+            fontSize: 12,
+            color: 'red'
+          }
+        },
+        grid: {
+          top: 100,
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          show: true,
+          borderColor: 'red',
+          containLabel: true
         },
         xAxis: {
           type: 'category',
@@ -114,37 +139,33 @@ export default {
             show: false
           }
         }],
-        dataZoom: [{
-          show: true,
-          height: 30,
-          xAxisIndex: [
-            0
-          ],
-          bottom: 30,
-          start: 10,
-          end: 80,
-          handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
-          handleSize: '110%',
-          handleStyle: {
-            color: '#d3dee5'
-
+        series: [
+          {
+            type: 'pie',
+            name: 'pie',
+            center: ['65%', 60],
+            radius: 35,
+            data: [{
+              name: 'xx',
+              value: 52
+            }, {
+              name: 'yy',
+              value: 54
+            }, {
+              name: 'zz',
+              value: 42
+            }]
           },
-          textStyle: {
-            color: '#fff' },
-          borderColor: '#90979c'
-
-        }, {
-          type: 'inside',
-          show: true,
-          height: 15,
-          start: 1,
-          end: 35
-        }],
-        series: [{
-          name: '销量',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
-        }]
+          {
+            type: 'bar',
+            name: 'bar',
+            data: [20, 30, 38, 20, 32, 30]
+          },
+          {
+            type: 'line',
+            name: 'line',
+            data: [20, 30, 38, 20, 32, 30]
+          }]
       })
     }
   }
