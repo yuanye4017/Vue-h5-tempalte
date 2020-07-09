@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      list: ['@vue/cli 4.x', '配置多环境变量', 'vant-ui按需加载', '移动端适配', 'scss全局变量', 'Vuex状态管理', 'Vuex本地持久化', 'Vue-router', 'Axios封装和接口统一管理', 'vue.config.js自定义配置', 'SvgIcon封装', 'splitChunks实现路由分割', 'PostCss自动增加浏览器后缀', '基于plop自动生成模版']
+      list: ['@vue/cli 4.x', '配置多环境变量', 'vant-ui按需加载', '移动端适配', 'scss全局变量', 'Vuex状态管理', 'Vue-router', 'Axios封装和接口统一管理', 'vue.config.js自定义配置', 'SvgIcon封装', 'splitChunks实现路由分割', 'PostCss自动增加浏览器后缀', '基于plop自动生成模版']
     }
   },
   methods: {

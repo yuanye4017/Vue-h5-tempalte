@@ -3,7 +3,8 @@
     <van-sticky>
       <van-tabs v-model="active" @click="goPage">
         <van-tab title="首页" name="/home" />
-        <van-tab title="图标" name="/icon" />
+        <van-tab title="图标" name="/icon/index" />
+        <van-tab title="图表" name="/echart/index" />
       </van-tabs>
     </van-sticky>
     <keep-alive :include="cachedViews">
@@ -24,7 +25,7 @@ export default {
   },
   data() {
     return {
-      active: 'home'
+      active: '/home'
     }
   },
   computed: {
@@ -45,12 +46,8 @@ export default {
       immediate: true
     }
   },
-  created() {
-    this.active = this.$store.getters.active
-  },
   methods: {
     goPage() {
-      this.$store.dispatch('app/changeActive', this.active)
       this.$router.push(this.active)
     }
   }
@@ -58,5 +55,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.app-wrapper {
+  width: 100%;
+  height: 100%;
+}
 </style>

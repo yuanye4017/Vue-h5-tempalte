@@ -47,6 +47,21 @@ export const constantRoutes = [ // 这是路由的集合 注意Layout的出现
     ]
   },
   {
+    path: '/echart',
+    component: Layout,
+    redirect: '/echart/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "BarChart" */ '@/views/echart'),
+        name: 'Echart',
+        meta: {
+          title: 'echart'
+        }
+      }
+    ]
+  },
+  {
     path: '/404',
     name: 'Page404',
     component: () => import(/* webpackChunkName: "page404" */ '@/views/404'),
